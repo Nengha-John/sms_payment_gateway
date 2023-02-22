@@ -24,6 +24,10 @@ def processPayment(request:Request):
         message = data['message']
         sender = data['from']
         reasons = []
+        number = ''
+        name = ''
+        amount = ''
+        transactionId = ''
         if 'Umelipa' in message:
             print(message)
             pass
@@ -47,16 +51,42 @@ def processPayment(request:Request):
                 name = name.group(1)
             if int(amount) != 2000:
                 reasons.append('Invalid Amount')
-            if len(reasons) != 0:
+           
+        elif sender.lower() == 'm-pesa':
+            transactionId = re.search(r'(\w+)\s+Imethibitishwa',message)
+            if transactionId:
+                transactionId = transactionId.group(1)
+            else:
+                 reasons.append('Could not parse Transaction Id')
+            amountAndPhoneName = re.search(r'\bTsh([\d,]+\.\d{2})\b.*?\b(\d{12})\b - \b([A-Z ]+)\b',message)
+            if amountAndPhoneName:
+                amount = int(amountAndPhoneName.group(1))
+                if not amount:
+                     reasons.append('Could not parse amount')
+                number = amountAndPhoneName.group(2)
+                name = amountAndPhoneName.group(3)
+        elif sender.lower() == 'tigopesa':
+            transactionId = re.search(r'KumbukumbuNo\.: (\d+)',message)
+            if transactionId:
+                transactionId = transactionId.group(1)
+            else:
+                 reasons.append('Could not parse Transaction Id')
+            amountAndPhoneName = re.search(r'\bTSh\s*([\d,]+\.\d+)\b.*? \b(\d{12})\b - \b([A-Z ]+)\b',message)
+            if amountAndPhoneName:
+                amount = amountAndPhoneName.group(1)
+                if not amount:
+                    reasons.append('Could not parse Amount')
+                number = amountAndPhoneName.group(2)
+                name = amountAndPhoneName.group(3)
+        else:
+            print(message)
+        if len(reasons) != 0:
                 print(sender, amount, transactionId, number, name)
                 pay = InvalidPayments.objects.create(message=message,name=name,sender=sender,number=number,amount=amount, transactionId=transactionId,reason=', '.join(reasons))
           
-            else:
+        else:
                 print(sender, amount, transactionId, number, name)
                 pay = Payment.objects.create(message=message,name=name, sender=sender,number=number,transactionId=transactionId,amount=amount) 
-
-        else:
-            print(message)
         return Response(status=200)
 
 
