@@ -74,3 +74,7 @@ In production environment, host your backend in a remote server and add the doma
 |amount | `int` The amount received from the transaction | Yes
 | reason |`str` Reason for the invalidity of the message | No
 | created |`timestamp` The date of creation of a given record | No
+
+
+## Contribution
+The project is open to contributions and customization. This version gives the overview of how the gatewat works. Testing and improvements are appreciated.
