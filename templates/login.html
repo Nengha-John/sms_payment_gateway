@@ -1,0 +1,36 @@
+{% extends 'home.html' %}
+{% load widget_tweaks %}
+
+{%block body %}
+<div class="row justify-content-center">
+
+<div class="col-5 row justify-content-center">
+<p class="text-white fs-3 text-center fw-bold" >Ingia</p>
+<form action="{% url 'auth:login'%}" class="col-6 " method="post">
+    {% csrf_token %}
+{%for field in form%}
+<div class="mb-2">
+    <label for="{{field.label}}" class="form-label text-white"> {{ field.label}}</label>
+    {{ field|add_class:'form-control' }}    
+</div>  
+{%endfor%}
+{% if form.errors%}
+<div class="alert alert-danger">
+    <!-- {{ errors}} -->
+    {{ form.errors }}
+</div>
+{% endif%}
+{% if next%}
+    <input type="hidden" name="next" value="{{ next}}">
+{%endif%}
+<div class="row mt-3 d-flex justify-content-between align-items-center">
+    <div class="col-auto">
+        <input class="border-0 rounded bg-base fs-6  px-3 py-2 fw-bold text-dark" type="submit" value="Ingia">
+    </div>
+
+</div>
+</form>
+</div>
+</div>
+
+{%endblock%}

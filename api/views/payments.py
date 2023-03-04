@@ -28,6 +28,7 @@ def processPayment(request:Request):
         name = ''
         amount = ''
         transactionId = ''
+        print('New Message')
         if 'Umelipa' in message:
             print(message)
             pass

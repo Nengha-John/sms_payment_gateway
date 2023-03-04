@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'accounts',
     'payments',
-    'api'
+    'api',
+    'widget_tweaks'
 ]
 
 AUTH_USER_MODEL = 'accounts.CustomUser'

@@ -1,0 +1,58 @@
+{% extends 'home.html' %}
+{% load static %}
+
+{%block body%}
+
+<div class="container-fluid p-0 m-0 text-white" style="max-height: 90vh;">
+    <div class="row justify-content-center p-2" >
+        <!-- <div class="row backdrop-auth p-0 m-0" style="background-image: url('https://image.tmdb.org/t/p/original{{trending.backdrop}}');height: 100vh;"> -->
+        <div class="row backdrop-auth p-0 m-0 justify-content-center align-items-center" style="background-color: rgba(0, 0, 0, 0.599); height: 90vh;">
+            <!-- <div class="text-center">
+                <div class="text-white fw-lighter fst-italic"> {% if isMovie%} Trending Movie{% else%} Trending Show{%endif%}</div>
+            </div> -->
+            <div>
+
+                
+                <div class=" text-center fs-lg-2 h2 pt-lg-2 text-base fw-bolder mb-lg-4">
+                    SMS Payment Gateway;
+                </div>
+              
+            <div class="row justify-content-center">
+
+           <div class="col-4  text-base ">
+
+            <div class=" justify-content-end ">
+                {% if isSubscribed %}
+                  Habari  {{ request.user.username |title }} Malipo yake yamepokelewa
+                {% else %}
+                <div class="row d-flex justify-content-end za kiasi fs-5">
+                    <ol>
+                        <li>Ingia katika Menu ya Airtel Money *150*60# </li>
+                        <li>Chagua 5.Lipia Bill</li>
+                        <li>Chagua 1.LIPA KWA SIMU</li>
+                        <li>Chagua 1. Lipa kwa Airtel Lipa Namba</li>
+                        <li>Ingiza kiasi </li>
+                        <li>Ingiza Lipa Namba <b class="fs-4">*****</b></li>
+                        <li>Baada ya kukamilisha muamala, nakili pembeni Namba ya muamala (Transaction ID). </li>
+                    </ol>
+                    <p class="fw-light">
+                       <span class="fw-bold">Note:</span> Currently we can only receive through Airtel. More providers coming soon 
+                    </p>
+        </div>
+        <a type="button" href="{% url 'payments:verify'%}"  class=" col-lg-auto btn btn-success  justify-content-center align-items-center  my-lg-3">
+            <div class="row fs-6 text-white px-2">
+                Nimeshalipa
+               </div>
+            </a>
+            {%endif%}
+        </div>
+    </div>
+ 
+</div>
+
+        
+
+        </div>
+    </div>
+</div>
+{%endblock%}

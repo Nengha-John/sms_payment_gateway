@@ -1,0 +1,37 @@
+{% extends 'home.html' %}
+{% load widget_tweaks %}
+
+{%block body %}
+<div class="row justify-content-center">
+
+<div class="col-5 row justify-content-center">
+<p class="text-white fs-3 text-center fw-bold" >Thibitisha</p>
+<div class="row justify-content-center">
+    <p class="col-lg-6 text-white fs-lg-5 fs-6 fw-bolder text-center">
+     Ingiza Namba ya Muamala (Transaction ID) uliyonakili pembeni
+    </p>
+  </div>
+<form action="{% url 'payments:verify'%}" class="col-6 " method="post">
+    {% csrf_token %}
+    <div class="row my-2 justify-content-center">
+        <input
+          class="col form-control py-2"
+          type="text"
+          name="transactionId"
+          id="" Enter the Transaction ID received with the message from your
+          provider
+          placeholder="Ingiza namba ya muamala"
+          style="min-height: 40px"
+          required
+        />
+      </div>
+<div class="row mt-3 d-flex justify-content-between align-items-center">
+    <div class="col-auto">
+        <input class="border-0 rounded bg-base fs-6  px-3 py-2 fw-bold text-dark" type="submit" value="Thibitisha">
+    </div>
+</div>
+</form>
+</div>
+</div>
+
+{%endblock%}

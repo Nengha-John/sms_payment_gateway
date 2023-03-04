@@ -1,0 +1,7 @@
+asgiref==3.6.0
+Django==4.1.7
+django-widget-tweaks==1.4.12
+djangorestframework==3.14.0
+python-dotenv==0.21.1
+pytz==2022.7.1
+sqlparse==0.4.3

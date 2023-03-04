@@ -16,7 +16,7 @@ def registerView(request):
         else:
             messages.info(request, form.errors.as_text())
    
-    return render(request, 'home.html', {
+    return render(request, 'register.html', {
         'form': form,
     })
 
@@ -43,7 +43,14 @@ def loginView(request):
                 escape_html=True).get('__all__')
             for error in errorList:
                 errors += error['message'] + '<br>'
-            form = AuthenticationForm()
             return render(request, 'login.html', {
         'form': form,
     })
+    else:
+        return render(request, 'login.html', {
+        'form': form,
+    })
+
+def logoutView(request):
+    logout(request)
+    return redirect('/')
